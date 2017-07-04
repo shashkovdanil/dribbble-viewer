@@ -3,11 +3,12 @@ import { Image } from 'react-native';
 
 import { TabBarIcon } from '../Components';
 
-const MainScreenHOC = (type, iconName) => WrappedComponent =>
+const MainScreenHOC = ({title, type, icon}) => WrappedComponent =>
   class MainScreenHOC extends Component {
     static navigationOptions = {
+      title,
       tabBarIcon: ({ tintColor }) =>
-        <TabBarIcon iconName={iconName} tintColor={tintColor} />
+        <TabBarIcon iconName={icon} tintColor={tintColor} />
     };
 
     state = {
@@ -68,8 +69,21 @@ const MainScreenHOC = (type, iconName) => WrappedComponent =>
 
     render() {
       const { data, refreshing } = this.state;
+      const { navigate } = this.props.navigation;
+      console.log(data);
       return (
         <WrappedComponent
+          navigateToShotDetail={(item) =>
+            navigate(
+              'ShotDetails',
+              {
+                avatar: item.user.avatar_url,
+                createdAt: item.created_at,
+                title: item.title,
+                authorName: item.user.name,
+                shot: item.images.normal
+              }
+            )}
           data={data}
           onEndReached={this.loadMoreShots}
           refreshing={refreshing}

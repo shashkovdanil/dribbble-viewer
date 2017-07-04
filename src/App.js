@@ -1,20 +1,10 @@
-import { TabNavigator } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 
-import MainScreenHOC from './HOC/MainScreenHOC';
-import { ShotList } from './Components';
+import { Main, ShotDetails } from './Screens';
 
-const App = TabNavigator(
-  {
-    All: { screen: MainScreenHOC('default', 'dribbble')(ShotList) },
-    Debuts: { screen: MainScreenHOC('debuts', 'trophy')(ShotList) },
-    Animated: { screen: MainScreenHOC('animated', 'like')(ShotList) },
-    Rebounds: { screen: MainScreenHOC('rebounds', 'idea')(ShotList) }
-  },
-  {
-    tabBarOptions: {
-      activeTintColor: 'palevioletred'
-    }
-  }
-);
+const App = StackNavigator({
+  Main: { screen: Main },
+  ShotDetails: { screen: ShotDetails }
+});
 
 export default App;
