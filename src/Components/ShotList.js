@@ -21,7 +21,7 @@ class ShotList extends Component {
         onRefresh={onRefresh}
         ListFooterComponent={
           <View style={{ paddingVertical: 20 }}>
-            <ActivityIndicator animating size="large" />
+            <ActivityIndicator color="lightpink" animating size="large" />
           </View>
         }
       />

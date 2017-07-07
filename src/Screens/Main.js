@@ -36,8 +36,15 @@ const Main = TabNavigator(
   },
   {
     tabBarOptions: {
-      activeTintColor: 'palevioletred'
-    }
+      activeTintColor: 'white',
+      inactiveTintColor: 'black',
+      labelStyle: {
+        fontSize: 12
+      },
+      style: {
+        backgroundColor: 'lightpink'
+      }
+    },
   }
 );
 

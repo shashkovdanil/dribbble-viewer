@@ -1,22 +1,14 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import React, { PureComponent } from 'react';
+import { AppRegistry, StyleSheet, Text, View, StatusBar } from 'react-native';
 import App from './src/App';
 
-export default class dribbbleRN extends Component {
+export default class dribbbleRN extends PureComponent {
   render() {
     return (
-      <App />
+      <View style={{ flex: 1 }}>
+        <StatusBar barStyle="light-content" />
+        <App />
+      </View>
     );
   }
 }

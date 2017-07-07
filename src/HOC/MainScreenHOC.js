@@ -1,14 +1,19 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Image } from 'react-native';
 
 import { TabBarIcon } from '../Components';
 
-const MainScreenHOC = ({title, type, icon}) => WrappedComponent =>
-  class MainScreenHOC extends Component {
+const MainScreenHOC = ({ title, type, icon }) => WrappedComponent =>
+  class MainScreenHOC extends PureComponent {
     static navigationOptions = {
       title,
-      tabBarIcon: ({ tintColor }) =>
-        <TabBarIcon iconName={icon} tintColor={tintColor} />
+      headerStyle: {
+        backgroundColor: 'lightpink'
+      },
+      headerTitleStyle: {
+        color: 'white'
+      },
+      tabBarIcon: ({ tintColor }) => <TabBarIcon iconName={icon} tintColor={tintColor} />
     };
 
     state = {
@@ -62,7 +67,7 @@ const MainScreenHOC = ({title, type, icon}) => WrappedComponent =>
     renderFooter = () => {
       return (
         <View style={{ paddingVertical: 20 }}>
-          <ActivityIndicator animating size="large" />
+          <ActivityIndicator color="lightpink" animating size="large" />
         </View>
       );
     };
@@ -70,20 +75,20 @@ const MainScreenHOC = ({title, type, icon}) => WrappedComponent =>
     render() {
       const { data, refreshing } = this.state;
       const { navigate } = this.props.navigation;
-      console.log(data);
       return (
         <WrappedComponent
-          navigateToShotDetail={(item) =>
-            navigate(
-              'ShotDetails',
-              {
-                avatar: item.user.avatar_url,
-                createdAt: item.created_at,
-                title: item.title,
-                authorName: item.user.name,
-                shot: item.images.normal
-              }
-            )}
+          navigateToShotDetail={item =>
+            navigate('ShotDetails', {
+              avatar: item.user.avatar_url,
+              createdAt: item.created_at,
+              title: item.title,
+              authorName: item.user.name,
+              shot: item.images.normal,
+              likesCount: item.likes_count,
+              commentsCount: item.comments_count,
+              viewsCount: item.views_count,
+              description: item.description
+            })}
           data={data}
           onEndReached={this.loadMoreShots}
           refreshing={refreshing}

@@ -7,12 +7,18 @@ const Avatar = styled.Image`
   width: 48;
   height: 48;
   border-radius: 24;
-  margin-right: 16
+  margin-right: 16;
+  margin-left: 2;
+  margin-top: 2;
+  margin-bottom: 2;
 `;
 
 const InfoContainer = styled.View`
   flex-direction: row;
   align-items: center;
+  background-color: white;
+  border-radius: 2;
+  margin-bottom: 8;
 `;
 
 const TextContainer = styled.View`
