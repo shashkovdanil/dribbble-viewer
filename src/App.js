@@ -1,10 +1,11 @@
 import { StackNavigator } from 'react-navigation';
 
-import { Main, ShotDetails } from './Screens';
+import { Main, ShotDetails, Comments } from './Screens';
 
 const App = StackNavigator({
   Main: { screen: Main },
-  ShotDetails: { screen: ShotDetails }
+  ShotDetails: { screen: ShotDetails },
+  Comments: { screen: Comments }
 });
 
 export default App;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Image, Text } from 'react-native';
 import styled from 'styled-components/native';
 import moment from 'moment';
@@ -19,10 +19,12 @@ const InfoContainer = styled.View`
   background-color: white;
   border-radius: 2;
   margin-bottom: 8;
+  max-width: 100%;
 `;
 
 const TextContainer = styled.View`
   flex-direction: column;
+  width: 80%;
 `;
 
 const Title = styled.Text`

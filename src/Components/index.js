@@ -5,3 +5,4 @@ export * from './ShotDetailsInfoBlock';
 export * from './ShotDetailsPopularityInfoBlock';
 export * from './ShotDetailsDescriptionBlock';
 export * from './Placeholder';
+export * from './Comment';

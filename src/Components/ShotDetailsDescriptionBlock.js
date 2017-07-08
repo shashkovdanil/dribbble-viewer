@@ -13,10 +13,13 @@ const Container = styled.View`
   border-radius: 2;
 `;
 
-const ShotDetailsDescriptionBlock = ({ description }) =>
-  <Container>
-    <HTMLView value={description.replace(/\n/g, '')} stylesheet={styles} />
-  </Container>;
+const ShotDetailsDescriptionBlock = ({ description }) => (
+  description
+    ? <Container>
+        <HTMLView value={description.replace(/\n/g, '')} stylesheet={styles} />
+      </Container>
+    : null
+);
 
 const styles = StyleSheet.create({
   a: {

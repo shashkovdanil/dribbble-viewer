@@ -2,7 +2,12 @@ import React, { PureComponent } from 'react';
 import { View, Image, ScrollView, ActivityIndicator, Text } from 'react-native';
 import styled from 'styled-components/native';
 
-import { ShotDetailsInfoBlock, ShotDetailsPopularityInfoBlock, ShotDetailsDescriptionBlock, Placeholder } from '../Components';
+import {
+  ShotDetailsInfoBlock,
+  ShotDetailsPopularityInfoBlock,
+  ShotDetailsDescriptionBlock,
+  Placeholder
+} from '../Components';
 
 const Container = styled.ScrollView`
   padding-left: 16;
@@ -27,7 +32,8 @@ class ShotDetails extends PureComponent {
       likesCount,
       commentsCount,
       viewsCount,
-      description
+      description,
+      commentsUrl
     } = navigation.state.params;
     return {
       headerStyle: {
@@ -45,7 +51,8 @@ class ShotDetails extends PureComponent {
       likesCount,
       commentsCount,
       viewsCount,
-      description
+      description,
+      commentsUrl
     };
   };
 
@@ -61,8 +68,9 @@ class ShotDetails extends PureComponent {
   }
 
   componentDidMount() {
-    const imageUri = this.props.navigation.state.params.shot;
-    Image.getSize(imageUri, (width, height) => {
+    const params = this.props.navigation.state.params;
+    const { shot } = params;
+    Image.getSize(shot, (width, height) => {
       this.setState({ width, height });
     });
   }
@@ -73,20 +81,33 @@ class ShotDetails extends PureComponent {
 
   render() {
     const params = this.props.navigation.state.params;
-    const { shot, likesCount, commentsCount, viewsCount, description } = params;
+    const { navigate } = this.props.navigation;
+    const {
+      shot,
+      likesCount,
+      commentsCount,
+      viewsCount,
+      description,
+      commentsUrl
+    } = params;
     const counts = {
       likesCount,
       commentsCount,
       viewsCount
     };
-    const { width, height, loading } = this.state;
+    const { width, height, loading, comments, refreshing } = this.state;
     return (
       <Container>
         <ShotDetailsInfoBlock dataShot={params} />
         <Placeholder loading={loading}>
           <Shot onLoad={this.onLoad} style={{ width, height }} source={{ uri: shot }} />
         </Placeholder>
-        <ShotDetailsPopularityInfoBlock counts={counts} />
+        <ShotDetailsPopularityInfoBlock
+          counts={counts}
+          navigateToComments={() => navigate('Comments', {
+            commentsUrl
+          })}
+        />
         <ShotDetailsDescriptionBlock description={description} />
       </Container>
     );

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { Image } from 'react-native';
 
 import { TabBarIcon } from '../Components';
+import fetchData from '../Utils/apiHelper';
 
 const MainScreenHOC = ({ title, type, icon }) => WrappedComponent =>
   class MainScreenHOC extends PureComponent {
@@ -24,22 +25,16 @@ const MainScreenHOC = ({ title, type, icon }) => WrappedComponent =>
       refreshing: false
     };
 
-    componentDidMount = () => {
+    componentDidMount() {
       this.fetchShots();
-    };
+    }
 
     fetchShots = () => {
       const { page, type } = this.state;
       const url = `https://api.dribbble.com/v1/shots/?list=${type}&per_page=10&page=${page}`;
-      const accessToken = '7a22f910dcdff63bd3ebbe48d022f05e8268c67249709b5489d923f97bcf96ec';
       this.setState({ loading: true });
       setTimeout(() => {
-        fetch(url, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`
-          }
-        })
-          .then(res => res.json())
+        fetchData(url)
           .then(data =>
             this.setState(prevState => ({
               data: page === 1 ? data : [...prevState.data, ...data],
@@ -87,7 +82,8 @@ const MainScreenHOC = ({ title, type, icon }) => WrappedComponent =>
               likesCount: item.likes_count,
               commentsCount: item.comments_count,
               viewsCount: item.views_count,
-              description: item.description
+              description: item.description,
+              commentsUrl: item.comments_url
             })}
           data={data}
           onEndReached={this.loadMoreShots}

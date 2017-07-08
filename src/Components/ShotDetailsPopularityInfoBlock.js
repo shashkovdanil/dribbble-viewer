@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
 const Container = styled.View`
@@ -24,7 +24,7 @@ const Icon = styled.Image`
   height: 16;
 `;
 
-const ShotDetailsPopularityInfoBlock = ({ counts }) => {
+const ShotDetailsPopularityInfoBlock = ({ counts, navigateToComments }) => {
   const { likesCount, commentsCount, viewsCount } = counts;
   return (
     <Container>
@@ -35,7 +35,9 @@ const ShotDetailsPopularityInfoBlock = ({ counts }) => {
         </Text>
       </CountContainer>
       <CountContainer>
-        <Icon source={require('../Icons/commentscount.png')} />
+        <TouchableOpacity onPress={() => navigateToComments()}>
+          <Icon source={require('../Icons/commentscount.png')} />
+        </TouchableOpacity>
         <Text>
           {commentsCount}
         </Text>
