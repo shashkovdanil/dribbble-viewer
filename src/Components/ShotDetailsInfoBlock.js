@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { View, Image, Text } from 'react-native';
 import styled from 'styled-components/native';

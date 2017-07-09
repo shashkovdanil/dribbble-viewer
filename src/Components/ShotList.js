@@ -1,19 +1,31 @@
+// @flow
 import React, { Component } from 'react';
-import { FlatList, View, ActivityIndicator, TouchableOpacity } from 'react-native';
+import {
+  FlatList,
+  View,
+  ActivityIndicator,
+  TouchableOpacity,
+} from 'react-native';
 
 import { Shot } from './Shot';
 
 class ShotList extends Component {
   render() {
-    const { data, onEndReached, refreshing, onRefresh, navigateToShotDetail } = this.props;
+    const {
+      data,
+      onEndReached,
+      refreshing,
+      onRefresh,
+      navigateToShotDetail,
+    } = this.props;
     return (
       <FlatList
         data={data}
-        renderItem={({ item }) =>
+        renderItem={({ item }) => (
           <TouchableOpacity onPress={() => navigateToShotDetail(item)}>
             <Shot uri={item.images.normal} />
           </TouchableOpacity>
-        }
+        )}
         keyExtractor={item => item.id}
         onEndReached={onEndReached}
         onEndThreshhold={0}

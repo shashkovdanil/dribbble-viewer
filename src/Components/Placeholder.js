@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { View, Text } from 'react-native';
 import styled from 'styled-components/native';
@@ -14,10 +15,20 @@ const PlaceholderText = styled.Text`
   color: white;
 `;
 
-const Placeholder = ({ loading, children }) =>
-  <PlaceholderContainer style={{ backgroundColor: loading ? 'lightpink' : null }}>
-    {loading ? <PlaceholderText>Loading... Wait pls... 😴</PlaceholderText> : null}
+type PlaceholderProps = {
+  loading: boolean,
+  children: React.Element<*>
+};
+
+const Placeholder = ({ loading, children }: PlaceholderProps) => (
+  <PlaceholderContainer
+    style={{ backgroundColor: loading ? 'lightpink' : null }}
+  >
+    {loading
+      ? <PlaceholderText>Loading... Wait pls... 😴</PlaceholderText>
+      : null}
     {children}
-  </PlaceholderContainer>;
+  </PlaceholderContainer>
+);
 
 export { Placeholder };

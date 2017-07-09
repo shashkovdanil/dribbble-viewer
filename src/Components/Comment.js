@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import HTMLView from 'react-native-htmlview';
@@ -32,33 +33,33 @@ const Name = styled.Text`
   margin-bottom: 4;
 `;
 
-const Description = styled.Text`
-  color: darkgray;
-`;
-
-const Comment = ({ name, avatar, commentText }) => {
-  return (
-    <CommentContainer>
-      <Avatar source={{ uri: avatar }} />
-      <TextContainer>
-        <Name>{name}</Name>
-        <HTMLView value={commentText.replace(/\n/g, '')} stylesheet={styles} />
-      </TextContainer>
-    </CommentContainer>
-  );
-};
-
 const styles = StyleSheet.create({
   a: {
     fontWeight: '300',
-    color: '#ff3366'
+    color: '#ff3366',
   },
   p: {
     fontSize: 14,
     padding: 0,
     margin: 0,
-    color: 'black'
-  }
+    color: 'black',
+  },
 });
+
+type CommentProps = {
+  name: string,
+  avatar: string,
+  commentText: string
+};
+
+const Comment = ({ name, avatar, commentText }: CommentProps) => (
+  <CommentContainer>
+    <Avatar source={{ uri: avatar }} />
+    <TextContainer>
+      <Name>{name}</Name>
+      <HTMLView value={commentText.replace(/\n/g, '')} stylesheet={styles} />
+    </TextContainer>
+  </CommentContainer>
+);
 
 export { Comment };

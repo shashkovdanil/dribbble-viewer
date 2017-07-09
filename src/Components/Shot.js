@@ -1,3 +1,4 @@
+// @flow
 import React, { PureComponent } from 'react';
 import { Image } from 'react-native';
 import styled from 'styled-components/native';
@@ -13,11 +14,15 @@ const ShotImage = styled.Image`
 
 class Shot extends PureComponent {
   state = {
-    loading: true
+    loading: true,
   };
 
   onLoad = () => {
     this.setState({ loading: false });
+  };
+
+  props: {
+    uri: string
   };
 
   render() {

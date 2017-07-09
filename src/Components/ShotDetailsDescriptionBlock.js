@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import HTMLView from 'react-native-htmlview';
@@ -13,25 +14,30 @@ const Container = styled.View`
   border-radius: 2;
 `;
 
-const ShotDetailsDescriptionBlock = ({ description }) => (
-  description
-    ? <Container>
-        <HTMLView value={description.replace(/\n/g, '')} stylesheet={styles} />
-      </Container>
-    : null
-);
-
 const styles = StyleSheet.create({
   a: {
     fontWeight: '300',
-    color: '#ff3366'
+    color: '#ff3366',
   },
   p: {
     fontSize: 14,
     padding: 0,
     margin: 0,
-    color: 'black'
-  }
+    color: 'black',
+  },
 });
+
+type ShotDetailsDescriptionBlockProps = {
+  description: string
+};
+
+const ShotDetailsDescriptionBlock = ({
+  description,
+}: ShotDetailsDescriptionBlockProps) =>
+  (description
+    ? <Container>
+      <HTMLView value={description.replace(/\n/g, '')} stylesheet={styles} />
+    </Container>
+    : null);
 
 export { ShotDetailsDescriptionBlock };
