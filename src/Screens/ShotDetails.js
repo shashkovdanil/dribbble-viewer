@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react';
-import { View, Image, ScrollView, ActivityIndicator, Text } from 'react-native';
+import { Image } from 'react-native';
 import styled from 'styled-components/native';
 
 import {
   ShotDetailsInfoBlock,
   ShotDetailsPopularityInfoBlock,
   ShotDetailsDescriptionBlock,
-  Placeholder
 } from '../Components';
 
 const Container = styled.ScrollView`
@@ -33,14 +32,14 @@ class ShotDetails extends PureComponent {
       commentsCount,
       viewsCount,
       description,
-      commentsUrl
+      commentsUrl,
     } = navigation.state.params;
     return {
       headerStyle: {
-        backgroundColor: 'lightpink'
+        backgroundColor: 'lightpink',
       },
       headerTitleStyle: {
-        color: 'white'
+        color: 'white',
       },
       headerTintColor: 'white',
       avatar,
@@ -52,14 +51,14 @@ class ShotDetails extends PureComponent {
       commentsCount,
       viewsCount,
       description,
-      commentsUrl
+      commentsUrl,
     };
   };
 
   state = {
     width: 0,
     height: 0,
-    loading: true
+    loading: true,
   };
 
   componentWillMount() {
@@ -88,25 +87,30 @@ class ShotDetails extends PureComponent {
       commentsCount,
       viewsCount,
       description,
-      commentsUrl
+      commentsUrl,
     } = params;
     const counts = {
       likesCount,
       commentsCount,
-      viewsCount
+      viewsCount,
     };
-    const { width, height, loading, comments, refreshing } = this.state;
+    const { width, height, loading } = this.state;
     return (
       <Container>
         <ShotDetailsInfoBlock dataShot={params} />
         <Placeholder loading={loading}>
-          <Shot onLoad={this.onLoad} style={{ width, height }} source={{ uri: shot }} />
+          <Shot
+            onLoad={this.onLoad}
+            style={{ width, height }}
+            source={{ uri: shot }}
+          />
         </Placeholder>
         <ShotDetailsPopularityInfoBlock
           counts={counts}
-          navigateToComments={() => navigate('Comments', {
-            commentsUrl
-          })}
+          navigateToComments={() =>
+            navigate('Comments', {
+              commentsUrl,
+            })}
         />
         <ShotDetailsDescriptionBlock description={description} />
       </Container>

@@ -5,7 +5,7 @@ import { Main, ShotDetails, Comments } from './Screens';
 const App = StackNavigator({
   Main: { screen: Main },
   ShotDetails: { screen: ShotDetails },
-  Comments: { screen: Comments }
+  Comments: { screen: Comments },
 });
 
 export default App;

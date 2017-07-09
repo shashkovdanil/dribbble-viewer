@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import { View, Text } from 'react-native';
 import styled from 'styled-components/native';
 
 const PlaceholderContainer = styled.View`
@@ -17,7 +16,7 @@ const PlaceholderText = styled.Text`
 
 type PlaceholderProps = {
   loading: boolean,
-  children: React.Element<*>
+  children: React.Element<any>
 };
 
 const Placeholder = ({ loading, children }: PlaceholderProps) => (

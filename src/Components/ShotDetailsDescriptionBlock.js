@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import HTMLView from 'react-native-htmlview';
 import styled from 'styled-components/native';
 

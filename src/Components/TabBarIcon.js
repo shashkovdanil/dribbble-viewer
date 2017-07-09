@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import { Image } from 'react-native';
 import styled from 'styled-components/native';
 
 const StyledImage = styled.Image`

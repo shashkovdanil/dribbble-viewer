@@ -13,7 +13,11 @@
 ; "node_modules/react-native" but in the source repo it is in the root
 .*/Libraries/react-native/React.js
 .*/Libraries/react-native/ReactNative.js
-.*/node_modules/.*
+
+; Ignore libraries with broken flow
+.*/node_modules/react-navigation/.*
+.*/node_modules/styled-components/.*
+.*/node_modules/react-native-tab-view/.*
 
 [include]
 

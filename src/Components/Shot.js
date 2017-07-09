@@ -1,6 +1,5 @@
 // @flow
 import React, { PureComponent } from 'react';
-import { Image } from 'react-native';
 import styled from 'styled-components/native';
 
 import { Placeholder } from './Placeholder';

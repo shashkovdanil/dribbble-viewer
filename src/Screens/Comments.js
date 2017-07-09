@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { FlatList, View, Text } from 'react-native';
+import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
 
 import { Comment } from '../Components';
@@ -23,19 +23,19 @@ class Comments extends PureComponent {
     return {
       title: 'Comments',
       headerStyle: {
-        backgroundColor: 'lightpink'
+        backgroundColor: 'lightpink',
       },
       headerTitleStyle: {
-        color: 'white'
+        color: 'white',
       },
       headerTintColor: 'white',
-      commentsUrl
+      commentsUrl,
     };
   };
 
   state = {
-    comments: []
-  }
+    comments: [],
+  };
 
   componentDidMount() {
     this.fetchComments();
@@ -46,10 +46,11 @@ class Comments extends PureComponent {
     const { commentsUrl } = params;
     const { comments } = this.state;
     setTimeout(() => {
-      fetchData(commentsUrl)
-        .then(comments => this.setState(prevState => ({
-          comments: [...prevState.comments, ...comments]
-        })));
+      fetchData(commentsUrl).then(comments =>
+        this.setState(prevState => ({
+          comments: [...prevState.comments, ...comments],
+        })),
+      );
     }, 1500);
   };
 
@@ -67,13 +68,13 @@ class Comments extends PureComponent {
     return (
       <FlatList
         data={comments}
-        renderItem={({ item }) =>
+        renderItem={({ item }) => (
           <Comment
             name={item.user.name}
             avatar={item.user.avatar_url}
             commentText={item.body}
           />
-        }
+        )}
         keyExtractor={item => item.id}
       />
     );

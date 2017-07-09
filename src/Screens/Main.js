@@ -9,43 +9,43 @@ const Main = TabNavigator(
       screen: MainScreenHOC({
         title: 'All',
         type: 'default',
-        icon: 'dribbble'
-      })(ShotList)
+        icon: 'dribbble',
+      })(ShotList),
     },
     Debuts: {
       screen: MainScreenHOC({
         title: 'Debuts',
         type: 'debuts',
-        icon: 'trophy'
-      })(ShotList)
+        icon: 'trophy',
+      })(ShotList),
     },
     Animated: {
       screen: MainScreenHOC({
         title: 'Animated',
         type: 'animated',
-        icon: 'like'
-      })(ShotList)
+        icon: 'like',
+      })(ShotList),
     },
     Rebounds: {
       screen: MainScreenHOC({
         title: 'Rebounds',
         type: 'rebounds',
-        icon: 'idea'
-      })(ShotList)
-    }
+        icon: 'idea',
+      })(ShotList),
+    },
   },
   {
     tabBarOptions: {
       activeTintColor: 'white',
       inactiveTintColor: 'black',
       labelStyle: {
-        fontSize: 12
+        fontSize: 12,
       },
       style: {
-        backgroundColor: 'lightpink'
-      }
+        backgroundColor: 'lightpink',
+      },
     },
-  }
+  },
 );
 
 export { Main };
