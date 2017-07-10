@@ -1,3 +1,4 @@
+// @flow
 import { TabNavigator } from 'react-navigation';
 
 import MainScreenHOC from '../HOC/MainScreenHOC';

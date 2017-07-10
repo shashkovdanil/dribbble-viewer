@@ -1,3 +1,4 @@
+// @flow
 import React, { PureComponent } from 'react';
 import { Image } from 'react-native';
 import styled from 'styled-components/native';
@@ -6,6 +7,7 @@ import {
   ShotDetailsInfoBlock,
   ShotDetailsPopularityInfoBlock,
   ShotDetailsDescriptionBlock,
+  Placeholder,
 } from '../Components';
 
 const Container = styled.ScrollView`

@@ -1,4 +1,6 @@
+// @flow
 import React, { PureComponent } from 'react';
+import { View, ActivityIndicator } from 'react-native';
 
 import { TabBarIcon } from '../Components';
 import fetchData from '../Utils/apiHelper';

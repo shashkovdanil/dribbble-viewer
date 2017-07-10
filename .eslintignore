@@ -1,0 +1,5 @@
+flow-typed/
+node-modules/
+.vscode/
+android/
+ios/

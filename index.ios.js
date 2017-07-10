@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { AppRegistry, View, StatusBar } from 'react-native';
 import App from './src/App';
