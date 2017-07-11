@@ -23,7 +23,7 @@ class ShotList extends Component {
         data={data}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => navigateToShotDetail(item)}>
-            <Shot uri={item.images.normal} />
+            <Shot widthShot="100%" heightShot="400" uri={item.images.normal} />
           </TouchableOpacity>
         )}
         keyExtractor={item => item.id}

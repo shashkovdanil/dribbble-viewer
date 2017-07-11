@@ -19,21 +19,6 @@ const PlaceholderText = styled.Text`
 `;
 
 class Comments extends PureComponent {
-  static navigationOptions = ({ navigation }) => {
-    const { commentsUrl } = navigation.state.params;
-    return {
-      title: 'Comments',
-      headerStyle: {
-        backgroundColor: 'lightpink',
-      },
-      headerTitleStyle: {
-        color: 'white',
-      },
-      headerTintColor: 'white',
-      commentsUrl,
-    };
-  };
-
   state = {
     comments: [],
   };
@@ -56,6 +41,7 @@ class Comments extends PureComponent {
   };
 
   render() {
+    const { navigate } = this.props.navigation
     const { comments } = this.state;
     if (comments.length === 0) {
       return (
@@ -71,6 +57,7 @@ class Comments extends PureComponent {
         data={comments}
         renderItem={({ item }) => (
           <Comment
+            navigateToAuthor={() => navigate('Author', {})}
             name={item.user.name}
             avatar={item.user.avatar_url}
             commentText={item.body}

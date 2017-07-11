@@ -23,40 +23,6 @@ const Shot = styled.Image`
 `;
 
 class ShotDetails extends PureComponent {
-  static navigationOptions = ({ navigation }) => {
-    const {
-      avatar,
-      createdAt,
-      title,
-      authorName,
-      shot,
-      likesCount,
-      commentsCount,
-      viewsCount,
-      description,
-      commentsUrl,
-    } = navigation.state.params;
-    return {
-      headerStyle: {
-        backgroundColor: 'lightpink',
-      },
-      headerTitleStyle: {
-        color: 'white',
-      },
-      headerTintColor: 'white',
-      avatar,
-      createdAt,
-      title,
-      authorName,
-      shot,
-      likesCount,
-      commentsCount,
-      viewsCount,
-      description,
-      commentsUrl,
-    };
-  };
-
   state = {
     width: 0,
     height: 0,
@@ -80,6 +46,10 @@ class ShotDetails extends PureComponent {
     this.setState({ loading: false });
   };
 
+  props: {
+    navigation: Object
+  };
+
   render() {
     const params = this.props.navigation.state.params;
     const { navigate } = this.props.navigation;
@@ -90,6 +60,11 @@ class ShotDetails extends PureComponent {
       viewsCount,
       description,
       commentsUrl,
+      authorBio,
+      authorLocation,
+      authorShotsUrl,
+      authorName,
+      avatar,
     } = params;
     const counts = {
       likesCount,
@@ -97,9 +72,20 @@ class ShotDetails extends PureComponent {
       viewsCount,
     };
     const { width, height, loading } = this.state;
+    const navigateToAuthor = () =>
+      navigate('Author', {
+        authorBio,
+        authorLocation,
+        authorShotsUrl,
+        authorName,
+        avatar,
+      });
     return (
       <Container>
-        <ShotDetailsInfoBlock dataShot={params} />
+        <ShotDetailsInfoBlock
+          dataShot={params}
+          navigateToAuthor={navigateToAuthor}
+        />
         <Placeholder loading={loading}>
           <Shot
             onLoad={this.onLoad}
@@ -113,6 +99,7 @@ class ShotDetails extends PureComponent {
             navigate('Comments', {
               commentsUrl,
             })}
+          navigateToAuthor={navigateToAuthor}
         />
         <ShotDetailsDescriptionBlock description={description} />
       </Container>

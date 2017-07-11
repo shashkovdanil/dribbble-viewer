@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import moment from 'moment';
 
@@ -35,12 +36,14 @@ const Description = styled.Text`
   color: darkgray;
 `;
 
-const ShotDetailsInfoBlock = ({ dataShot }) => {
+const ShotDetailsInfoBlock = ({ dataShot, navigateToAuthor }: Object) => {
   const { avatar, createdAt, title, authorName } = dataShot;
   const date = moment(createdAt).format('MMM D, YYYY');
   return (
     <InfoContainer>
-      <Avatar source={{ uri: avatar }} />
+      <TouchableOpacity onPress={navigateToAuthor}>
+        <Avatar source={{ uri: avatar }} />
+      </TouchableOpacity>
       <TextContainer>
         <Title>{title}</Title>
         <Description>by {authorName} on {date}</Description>

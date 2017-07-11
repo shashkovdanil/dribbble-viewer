@@ -5,11 +5,15 @@ import { View, ActivityIndicator } from 'react-native';
 import { TabBarIcon } from '../Components';
 import fetchData from '../Utils/apiHelper';
 
-const MainScreenHOC = ({
-  title,
-  type,
-  icon,
-}) => WrappedComponent => class MainScreenHOC extends PureComponent {
+type ComponentData = {
+  title: string,
+  type: string,
+  icon: string
+};
+
+const MainScreenHOC = ({ title, type, icon }: ComponentData) => (
+  WrappedComponent: Class<React$Component<*, *, *>>,
+) => class MainScreenHOC extends PureComponent {
   static navigationOptions = {
     title,
     headerStyle: {
@@ -90,6 +94,9 @@ const MainScreenHOC = ({
             viewsCount: item.views_count,
             description: item.description,
             commentsUrl: item.comments_url,
+            authorBio: item.user.bio,
+            authorLocation: item.user.location,
+            authorShotsUrl: item.user.shots_url,
           })}
         data={data}
         onEndReached={this.loadMoreShots}

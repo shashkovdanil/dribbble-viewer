@@ -19,6 +19,7 @@ const Avatar = styled.Image`
   margin-right: 16;
   margin-left: 6;
   margin-top: 6;
+  margin-bottom: 6;
 `;
 
 const TextContainer = styled.View`

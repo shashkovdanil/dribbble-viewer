@@ -5,8 +5,8 @@ import styled from 'styled-components/native';
 import { Placeholder } from './Placeholder';
 
 const ShotImage = styled.Image`
-  width: 100%;
-  height: 400;
+  width: ${props => props.widthShot};
+  height: ${props => props.heightShot};
   background-color: transparent;
   resizeMode: cover;
 `;
@@ -25,10 +25,15 @@ class Shot extends PureComponent {
   };
 
   render() {
-    const { uri } = this.props;
+    const { uri, widthShot, heightShot } = this.props;
     return (
       <Placeholder loading={this.state.loading}>
-        <ShotImage onLoad={this.onLoad} source={{ uri }} />
+        <ShotImage
+          widthShot={widthShot}
+          heightShot={heightShot}
+          onLoad={this.onLoad}
+          source={{ uri }}
+        />
       </Placeholder>
     );
   }
