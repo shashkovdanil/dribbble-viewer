@@ -7,7 +7,12 @@ const StyledImage = styled.Image`
   height: 24;
 `;
 
-const TabBarIcon = ({ iconName, tintColor }) => {
+type TabBarIconProps = {
+  iconName: string,
+  tintColor: string
+};
+
+const TabBarIcon = ({ iconName, tintColor }: TabBarIconProps) => {
   if (iconName === 'dribbble') {
     return (
       <StyledImage
@@ -29,14 +34,10 @@ const TabBarIcon = ({ iconName, tintColor }) => {
         source={require('../Icons/like.png')}
       />
     );
-  } else if (iconName === 'idea') {
-    return (
-      <StyledImage
-        style={{ tintColor }}
-        source={require('../Icons/idea.png')}
-      />
-    );
   }
+  return (
+    <StyledImage style={{ tintColor }} source={require('../Icons/idea.png')} />
+  );
 };
 
 export { TabBarIcon };

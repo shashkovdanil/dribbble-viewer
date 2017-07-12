@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from 'react';
-import { FlatList, View, Dimensions, Text, Image } from 'react-native';
+import { FlatList, View, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
 import { Shot } from '../Components';
@@ -64,11 +64,23 @@ class Author extends PureComponent {
     }, 1500);
   };
 
+  props: {
+    navigation: {
+      state: {
+        params: {
+          avatar: string,
+          authorName: string,
+          authorLocation: string,
+          authorBio: string,
+        }
+      }
+    }
+  }
+
   render() {
     const { width } = Dimensions.get('window');
     const { shots } = this.state;
-    const params = this.props.navigation.state.params;
-    const { avatar, authorName, authorLocation, authorBio } = params;
+    const { avatar, authorName, authorLocation, authorBio } = this.props.navigation.state.params;
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <AuthorInfoContainer>

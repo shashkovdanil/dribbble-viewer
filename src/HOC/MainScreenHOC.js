@@ -77,6 +77,29 @@ const MainScreenHOC = ({ title, type, icon }: ComponentData) => (
     </View>
   );
 
+  props: {
+    navigation: {
+      navigate: (
+        string,
+        {
+          avatar: string,
+          createdAt: string,
+          title: string,
+          authorName: string,
+          shot: string,
+          likesCount: string,
+          commentsCount: string,
+          viewsCount: string,
+          description: string,
+          commentsUrl: string,
+          authorBio: string,
+          authorLocation: string,
+          authorShotsUrl: string
+        }
+      ) => any
+    }
+  };
+
   render() {
     const { data, refreshing } = this.state;
     const { navigate } = this.props.navigation;

@@ -7,7 +7,9 @@
         "import"
     ],
     "globals": {
-        "fetch": true
+        "fetch": true,
+        "Class": true,
+        "React$Component": true
     },
     "rules": {
         "react/jsx-filename-extension": 0,
