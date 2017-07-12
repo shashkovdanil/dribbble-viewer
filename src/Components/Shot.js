@@ -21,7 +21,9 @@ class Shot extends PureComponent {
   };
 
   props: {
-    uri: string
+    uri: string,
+    widthShot: string,
+    heightShot: string
   };
 
   render() {

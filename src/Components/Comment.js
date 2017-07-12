@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import HTMLView from 'react-native-htmlview';
 import styled from 'styled-components/native';
 
@@ -50,12 +50,15 @@ const styles = StyleSheet.create({
 type CommentProps = {
   name: string,
   avatar: string,
-  commentText: string
+  commentText: string,
+  navigateToAuthor: () => any
 };
 
-const Comment = ({ name, avatar, commentText }: CommentProps) => (
+const Comment = ({ name, avatar, commentText, navigateToAuthor }: CommentProps) => (
   <CommentContainer>
-    <Avatar source={{ uri: avatar }} />
+    <TouchableOpacity onPress={navigateToAuthor}>
+      <Avatar source={{ uri: avatar }} />
+    </TouchableOpacity>
     <TextContainer>
       <Name>{name}</Name>
       <HTMLView value={commentText.replace(/\n/g, '')} stylesheet={styles} />

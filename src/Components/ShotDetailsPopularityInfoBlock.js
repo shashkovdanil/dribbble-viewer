@@ -3,6 +3,10 @@ import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
+const likesCountIcon = require('../Icons/likecount.png');
+const commentsCountIcon = require('../Icons/commentscount.png');
+const viewCountIcon = require('../Icons/viewcount.png');
+
 const Container = styled.View`
   margin-top: 8;
   margin-bottom: 8;
@@ -25,32 +29,36 @@ const Icon = styled.Image`
   height: 16;
 `;
 
-const ShotDetailsPopularityInfoBlock = ({ counts, navigateToComments }) => {
-  const { likesCount, commentsCount, viewsCount } = counts;
-  return (
-    <Container>
-      <CountContainer>
-        <Icon source={require('../Icons/likecount.png')} />
-        <Text>
-          {likesCount}
-        </Text>
-      </CountContainer>
-      <CountContainer>
-        <TouchableOpacity onPress={() => navigateToComments()}>
-          <Icon source={require('../Icons/commentscount.png')} />
-        </TouchableOpacity>
-        <Text>
-          {commentsCount}
-        </Text>
-      </CountContainer>
-      <CountContainer>
-        <Icon source={require('../Icons/viewcount.png')} />
-        <Text>
-          {viewsCount}
-        </Text>
-      </CountContainer>
-    </Container>
-  );
+type ShotDetailsPopularityInfoBlockProps = {
+  counts: Object,
+  navigateToComments: () => any,
 };
+
+const ShotDetailsPopularityInfoBlock = ({
+  counts,
+  navigateToComments,
+}: ShotDetailsPopularityInfoBlockProps) =>
+  (<Container>
+    <CountContainer>
+      <Icon source={likesCountIcon} />
+      <Text>
+        {counts.likesCount}
+      </Text>
+    </CountContainer>
+    <CountContainer>
+      <TouchableOpacity onPress={counts.commentsCount > 0 ? () => navigateToComments() : null}>
+        <Icon source={commentsCountIcon} />
+        <Text>
+          {counts.commentsCount}
+        </Text>
+      </TouchableOpacity>
+    </CountContainer>
+    <CountContainer>
+      <Icon source={viewCountIcon} />
+      <Text>
+        {counts.viewsCount}
+      </Text>
+    </CountContainer>
+  </Container>);
 
 export { ShotDetailsPopularityInfoBlock };

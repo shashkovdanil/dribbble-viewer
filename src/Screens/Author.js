@@ -1,10 +1,15 @@
 // @flow
 import React, { PureComponent } from 'react';
-import { FlatList, View, Dimensions } from 'react-native';
+import { FlatList, Dimensions, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
 import { Shot } from '../Components';
 import fetchData from '../Utils/apiHelper';
+
+const Container = styled.View`
+  flex: 1;
+  background-color: white;
+`;
 
 const Avatar = styled.Image`
   width: 90;
@@ -43,6 +48,12 @@ const LastShots = styled.Text`
   text-align: center;
 `;
 
+const ShotListContainer = styled.View`
+  width: ${props => props.width};
+  height: ${props => props.width / 1.5};
+  flex: 0.5;
+`;
+
 class Author extends PureComponent {
   state = {
     shots: [],
@@ -66,51 +77,74 @@ class Author extends PureComponent {
 
   props: {
     navigation: {
+      navigate: () => any,
       state: {
         params: {
           avatar: string,
           authorName: string,
           authorLocation: string,
           authorBio: string,
-        }
-      }
-    }
-  }
+          authorShotsUrl: string,
+        },
+      },
+    },
+  };
 
   render() {
+    const { navigate } = this.props.navigation;
     const { width } = Dimensions.get('window');
     const { shots } = this.state;
-    const { avatar, authorName, authorLocation, authorBio } = this.props.navigation.state.params;
+    const {
+      avatar,
+      authorName,
+      authorLocation,
+      authorBio,
+      authorShotsUrl,
+    } = this.props.navigation.state.params;
     return (
-      <View style={{ flex: 1, backgroundColor: 'white' }}>
+      <Container>
         <AuthorInfoContainer>
           <Avatar source={{ uri: avatar }} />
-          <Name>{authorName}</Name>
-          <Location>{authorLocation}</Location>
-          <Bio>{authorBio}</Bio>
+          <Name>
+            {authorName}
+          </Name>
+          <Location>
+            {authorLocation}
+          </Location>
+          <Bio>
+            {authorBio}
+          </Bio>
           <LastShots>Recent Shots ↓↓↓</LastShots>
         </AuthorInfoContainer>
-        <View
-          style={{
-            width,
-            height: width / 1.5,
-            flex: 0.5,
-          }}
-        >
+        <ShotListContainer width={width}>
           <FlatList
             horizontal
             data={shots}
-            renderItem={({ item }) => (
-              <Shot
-                widthShot={width / 1.5}
-                heightShot={width / 1.5}
-                uri={item.images.normal}
-              />
-            )}
+            renderItem={({ item }) =>
+              (<TouchableOpacity
+                onPress={() =>
+                  navigate('ShotDetails', {
+                    avatar,
+                    createdAt: item.created_at,
+                    title: item.title,
+                    authorName,
+                    shot: item.images.normal,
+                    likesCount: item.likes_count,
+                    commentsCount: item.comments_count,
+                    viewsCount: item.views_count,
+                    description: item.description,
+                    commentsUrl: item.comments_url,
+                    authorBio,
+                    authorLocation,
+                    authorShotsUrl,
+                  })}
+              >
+                <Shot widthShot={width / 1.5} heightShot={width / 1.5} uri={item.images.normal} />
+              </TouchableOpacity>)}
             keyExtractor={item => item.id}
           />
-        </View>
-      </View>
+        </ShotListContainer>
+      </Container>
     );
   }
 }

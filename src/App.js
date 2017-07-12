@@ -4,7 +4,18 @@ import { StackNavigator } from 'react-navigation';
 import { Main, ShotDetails, Comments, Author } from './Screens';
 
 const App = StackNavigator({
-  Main: { screen: Main },
+  Main: {
+    screen: Main,
+    navigationOptions: ({ navigation }) => ({
+      title: navigation.state.params,
+      headerStyle: {
+        backgroundColor: 'lightpink',
+      },
+      headerTitleStyle: {
+        color: 'white',
+      },
+    }),
+  },
   ShotDetails: {
     screen: ShotDetails,
     navigationOptions: ({ navigation }) => ({

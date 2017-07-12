@@ -6,22 +6,14 @@ import { TabBarIcon } from '../Components';
 import fetchData from '../Utils/apiHelper';
 
 type ComponentData = {
-  title: string,
   type: string,
   icon: string
 };
 
-const MainScreenHOC = ({ title, type, icon }: ComponentData) => (
+const MainScreenHOC = ({ typeShots, icon }: ComponentData) => (
   WrappedComponent: Class<React$Component<*, *, *>>,
-) => class MainScreenHOC extends PureComponent {
+) => class MainScreenComponent extends PureComponent {
   static navigationOptions = {
-    title,
-    headerStyle: {
-      backgroundColor: 'lightpink',
-    },
-    headerTitleStyle: {
-      color: 'white',
-    },
     tabBarIcon: ({ tintColor }) => (
       <TabBarIcon iconName={icon} tintColor={tintColor} />
     ),
@@ -31,7 +23,7 @@ const MainScreenHOC = ({ title, type, icon }: ComponentData) => (
     loading: false,
     data: [],
     page: 1,
-    type,
+    type: typeShots,
     refreshing: false,
   };
 

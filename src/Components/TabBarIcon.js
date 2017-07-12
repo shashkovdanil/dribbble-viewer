@@ -2,6 +2,12 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+// Icons
+const dribbbleIcon = require('../Icons/dribbble.png');
+const trophyIcon = require('../Icons/trophy.png');
+const likeIcon = require('../Icons/like.png');
+const ideaIcon = require('../Icons/idea.png');
+
 const StyledImage = styled.Image`
   width: 24;
   height: 24;
@@ -17,26 +23,26 @@ const TabBarIcon = ({ iconName, tintColor }: TabBarIconProps) => {
     return (
       <StyledImage
         style={{ tintColor }}
-        source={require('../Icons/dribbble.png')}
+        source={dribbbleIcon}
       />
     );
   } else if (iconName === 'trophy') {
     return (
       <StyledImage
         style={{ tintColor }}
-        source={require('../Icons/trophy.png')}
+        source={trophyIcon}
       />
     );
   } else if (iconName === 'like') {
     return (
       <StyledImage
         style={{ tintColor }}
-        source={require('../Icons/like.png')}
+        source={likeIcon}
       />
     );
   }
   return (
-    <StyledImage style={{ tintColor }} source={require('../Icons/idea.png')} />
+    <StyledImage style={{ tintColor }} source={ideaIcon} />
   );
 };
 

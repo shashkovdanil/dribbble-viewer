@@ -47,11 +47,27 @@ class ShotDetails extends PureComponent {
   };
 
   props: {
-    navigation: Object
+    navigation: {
+      navigate: () => any,
+      state: {
+        params: {
+          shot: string,
+          likesCount: string,
+          commentsCount: string,
+          viewsCount: string,
+          description: string,
+          commentsUrl: string,
+          authorBio: string,
+          authorLocation: string,
+          authorShotsUrl: string,
+          authorName: string,
+          avatar: string
+        }
+      }
+    }
   };
 
   render() {
-    const params = this.props.navigation.state.params;
     const { navigate } = this.props.navigation;
     const {
       shot,
@@ -65,7 +81,7 @@ class ShotDetails extends PureComponent {
       authorShotsUrl,
       authorName,
       avatar,
-    } = params;
+    } = this.props.navigation.state.params;
     const counts = {
       likesCount,
       commentsCount,
@@ -83,7 +99,7 @@ class ShotDetails extends PureComponent {
     return (
       <Container>
         <ShotDetailsInfoBlock
-          dataShot={params}
+          dataShot={this.props.navigation.state.params}
           navigateToAuthor={navigateToAuthor}
         />
         <Placeholder loading={loading}>
@@ -106,4 +122,5 @@ class ShotDetails extends PureComponent {
     );
   }
 }
+
 export { ShotDetails };

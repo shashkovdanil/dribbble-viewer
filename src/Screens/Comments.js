@@ -28,9 +28,7 @@ class Comments extends PureComponent {
   }
 
   fetchComments = () => {
-    const params = this.props.navigation.state.params;
-    const { commentsUrl } = params;
-    const { comments } = this.state;
+    const { commentsUrl } = this.props.navigation.state.params;
     setTimeout(() => {
       fetchData(commentsUrl).then(comments =>
         this.setState(prevState => ({
@@ -40,8 +38,19 @@ class Comments extends PureComponent {
     }, 1500);
   };
 
+  props: {
+    navigation: {
+      navigate: () => any,
+      state: {
+        params: {
+          commentsUrl: string
+        }
+      }
+    }
+  }
+
   render() {
-    const { navigate } = this.props.navigation
+    const { navigate } = this.props.navigation;
     const { comments } = this.state;
     if (comments.length === 0) {
       return (
@@ -57,7 +66,13 @@ class Comments extends PureComponent {
         data={comments}
         renderItem={({ item }) => (
           <Comment
-            navigateToAuthor={() => navigate('Author', {})}
+            navigateToAuthor={() => navigate('Author', {
+              authorBio: item.user.bio,
+              authorLocation: item.user.location,
+              authorShotsUrl: item.user.shots_url,
+              authorName: item.user.name,
+              avatar: item.user.avatar_url,
+            })}
             name={item.user.name}
             avatar={item.user.avatar_url}
             commentText={item.body}

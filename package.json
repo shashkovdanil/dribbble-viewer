@@ -8,7 +8,9 @@
 		"flow start": "flow start",
 		"flow stop": "flow stop",
 		"flow status": "flow status",
-		"flow coverage": "flow coverage"
+		"flow coverage": "flow coverage",
+		"lint": "eslint src/ --ext .js",
+		"lintfix": "eslint --fix src/ --ext .js"
 	},
 	"dependencies": {
 		"moment": "^2.18.1",
