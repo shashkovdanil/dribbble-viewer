@@ -6,18 +6,20 @@ import { TabBarIcon } from '../Components';
 import fetchData from '../Utils/apiHelper';
 
 type ComponentData = {
-  type: string,
-  icon: string
+  typeShots: string,
+  icon: string,
+  title: string
 };
 
-const MainScreenHOC = ({ typeShots, icon }: ComponentData) => (
+const MainScreenHOC = ({ title, typeShots, icon }: ComponentData) => (
   WrappedComponent: Class<React$Component<*, *, *>>,
 ) => class MainScreenComponent extends PureComponent {
-  static navigationOptions = {
+  static navigationOptions = () => ({
     tabBarIcon: ({ tintColor }) => (
       <TabBarIcon iconName={icon} tintColor={tintColor} />
     ),
-  };
+    title,
+  });
 
   state = {
     loading: false,

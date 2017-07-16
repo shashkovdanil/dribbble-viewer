@@ -6,8 +6,7 @@ import { Main, ShotDetails, Comments, Author } from './Screens';
 const App = StackNavigator({
   Main: {
     screen: Main,
-    navigationOptions: ({ navigation }) => ({
-      title: navigation.state.params,
+    navigationOptions: () => ({
       headerStyle: {
         backgroundColor: 'lightpink',
       },

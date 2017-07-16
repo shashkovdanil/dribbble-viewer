@@ -9,28 +9,28 @@ const Main = TabNavigator(
     All: {
       screen: MainScreenHOC({
         title: 'All',
-        type: 'default',
+        typeShots: 'default',
         icon: 'dribbble',
       })(ShotList),
     },
     Debuts: {
       screen: MainScreenHOC({
         title: 'Debuts',
-        type: 'debuts',
+        typeShots: 'debuts',
         icon: 'trophy',
       })(ShotList),
     },
     Animated: {
       screen: MainScreenHOC({
         title: 'Animated',
-        type: 'animated',
+        typeShots: 'animated',
         icon: 'like',
       })(ShotList),
     },
     Rebounds: {
       screen: MainScreenHOC({
         title: 'Rebounds',
-        type: 'rebounds',
+        typeShots: 'rebounds',
         icon: 'idea',
       })(ShotList),
     },
