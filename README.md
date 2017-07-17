@@ -13,7 +13,7 @@
 ### How to run (only iOS version):
 
   ```sh
-git clone https://github.com/shashkovdanil/dribbbleRN
+git clone https://github.com/shashkovdanil/dribbble-viewer
 yarn install
 react-native run-ios
 ```
