@@ -21,3 +21,7 @@ react-native run-ios
 ### TODO
 
 - Android version
+- Tests
+- Redux
+- Refactoring
+- New screen
